@@ -1,5 +1,6 @@
 package fr.android.androidexercises;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,7 +9,7 @@ import android.widget.TextView;
 
 public class BookActivity extends AppCompatActivity {
 
-    private String bookName = "Garry Whopper";
+    private String bookName = "Kiki";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +23,10 @@ public class BookActivity extends AppCompatActivity {
         sendNameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO set result to book name in intent
-
-                // TODO finish current activity
-
+                Intent intent = new Intent();
+                intent.putExtra("bookName", bookName);
+                setResult(RESULT_OK, intent);
+                finish();
             }
         });
     }
