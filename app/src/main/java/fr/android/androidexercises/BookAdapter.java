@@ -36,12 +36,15 @@ public class BookAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = inflater.inflate(R.layout.naive_view_item_book, parent, false);
+        BookItemView bookItemView;
+        if (convertView == null) {
+            bookItemView = (BookItemView) inflater.inflate(R.layout.custom_view_item_book, parent, false);
+        } else {
+            bookItemView = (BookItemView) convertView;
+        }
         Book book = books.get(position);
-        ((TextView) view.findViewById(R.id.nameTextView)).setText(book.name);
-        ((TextView) view.findViewById(R.id.priceTextView))
-                .setText(String.valueOf(book.price));
-        return view;
+        bookItemView.bindView(book);
+        return bookItemView;
     }
 
 
